@@ -1,0 +1,20 @@
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: lifesocket_development
+  username: lifesocket
+  password: lifesocket
+
+test:
+  adapter: postgresql
+  encoding: utf8
+  database: lifesocket_test
+  username: lifesocket
+  password: lifesocket
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: lifesocket_production
+  username: lifesocket
+  password: lifesocket
