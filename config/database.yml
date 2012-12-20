@@ -5,7 +5,7 @@ development:
   username: lifesocket
   password: lifesocket
 
-test:
+test: &test
   adapter: postgresql
   encoding: utf8
   database: lifesocket_test
@@ -18,3 +18,6 @@ production:
   database: lifesocket_production
   username: lifesocket
   password: lifesocket
+
+cucumber:
+  <<: *test

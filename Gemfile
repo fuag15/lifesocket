@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.9' # hardset ruby version
-
 gem 'pg', '~> 0.14.1' # postgresql adapter
 gem 'devise', '~> 2.1.2' # user control
 gem 'cancan', '~> 1.6.8' # user ability
@@ -14,12 +13,11 @@ gem 'foreman', '~> 0.60.2' # easily spawn mutiple servers
 gem 'gon', '~> 4.0.1' # pass vars to javascript
 gem 'ember-rails', '~> 0.8.0' # ember.js for rails
 gem 'haml-rails', '~> 0.3.5' # haml
-# gem 'sht_rails' # shared handlebar assets
 
 group :assets do
   gem 'hamlbars', '~> 2.0.0' # haml handlebar assets
   gem 'compass-rails', '~> 1.0.3' # compass for rails
-  gem 'bootstrap-sass', '~> 2.2.1.1' # twitter bootstrap for rails  
+  gem 'bootstrap-sass', '~> 2.2.1.1' # twitter bootstrap for rails
   gem 'sass-rails', '~> 3.2.5' # nice sass assets
   gem 'coffee-rails', '~> 3.2.2' # nice coffee asets
   gem 'therubyracer', '~> 0.11.0', :platforms => :ruby # javascript compiler in ruby
@@ -29,10 +27,22 @@ end
 group :development, :test do
   gem 'factory_girl_rails', '~> 4.1.0' # generate models
   gem 'jasmine-rails', '~> 0.3.2' # test ember
-  gem 'cucumber-rails', '~> 1.3.0' # story based tests
   gem 'rspec-rails', '~> 2.12.0' # unit tests
   gem 'capybara', '~> 2.0.1' # browser driven story tests
   gem 'spork', '~> 0.9.2' # process management, one server for all tests
   gem 'pry', '~> 0.9.10' # debuging
   gem 'pry-remote', '~> 0.1.6' #remote debuggin
+  gem 'rdoc', '~> 3.12' # docstrings
+  gem 'database_cleaner', '~> 0.9.1' # keep testing db's tidey
+  gem 'rb-inotify', '~> 0.8.8', :require => false # guard fs notify for linux
+  gem 'rb-fsevent', '~> 0.9.2', :require => false # guard fs notify for OSX
+  gem 'rb-fchange', '~> 0.0.6', :require => false # guard fs notify for Windows
+  gem 'guard', '~> 1.5.4' # only rerun things like tests when we change the source since last run! 
+  gem 'guard-rspec', '~> 2.3.1' # guard for rspec tests
+  gem 'guard-cucumber', '~> 1.2.2' # guard for cucumber tests
+  gem 'guard-jasmine', '~> 1.10.1' # guard for jasmine tests
+end
+
+group :test do
+  gem 'cucumber-rails', '~> 1.3.0' # story based tests
 end
