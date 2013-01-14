@@ -14,11 +14,11 @@ gem 'gon', '~> 4.0.1' # pass vars to javascript
 gem 'ember-rails', git: 'http://github.com/emberjs/ember-rails', ref: 'e7273f331370a5a5a4758ee4de40cc' # ember.js for rails
 gem 'haml-rails', '~> 0.3.5' # haml
 gem 'active_model_serializers', '~> 0.6.0' # serializers for jsoning
+gem 'compass-rails', '~> 1.0.3' # compass for rails
+gem 'bootstrap-sass-rails' # twitter bootstrap for rails
 
 group :assets do
   gem 'hamlbars', '~> 2.0.0' # haml handlebar assets
-  gem 'compass-rails', '~> 1.0.3' # compass for rails
-  gem 'bootstrap-sass-rails' # twitter bootstrap for rails
   gem 'sass-rails', '~> 3.2.5' # nice sass assets
   gem 'coffee-rails', '~> 3.2.2' # nice coffee asets
   gem 'therubyracer', '~> 0.11.0', :platforms => :ruby # javascript compiler in ruby
