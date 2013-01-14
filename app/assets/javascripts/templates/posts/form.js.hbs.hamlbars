@@ -3,11 +3,11 @@
 %form
   %fieldset
     %div
-      %label{ :bind => { :for => 'titleField.field_id'}} Title
+      %label{ :bind => { :for => 'titleField.elementId'}} Title
       = hb 'view Ember.TextField', :valueBinding => 'title', :name => 'title', :viewName => 'titleField'
     %div
-      %label{ :bind => { :for => 'contentField.elementId'}} content
-      = hb 'view Ember.TextField', :valueBinding => 'content', :name => 'content', :viewName => 'contentField'
+      %label{ :bind => { :for => 'fullField.elementId'}} Full
+      = hb 'view Ember.TextField', :valueBinding => 'full', :name => 'full', :viewName => 'fullField'
     %a.btn.btn-success{ :_action => 'create target="controller"'}
       = hb 'buttonTitle'
 .page-header

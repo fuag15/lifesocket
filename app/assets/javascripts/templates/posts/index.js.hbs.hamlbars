@@ -16,7 +16,7 @@
         = hb 'linkTo posts.show post' do
           = hb 'post.title'
       %td
-        = hb 'post.content'
+        = hb 'post.full'
 = hb 'linkTo posts.new' do
   .btn.btn-primary
     Create

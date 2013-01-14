@@ -1,8 +1,7 @@
 %h1
   = hb 'title'
-%div
-  %q
-    = hb 'content'
+%q
+  = hb 'full'
 .page-header
 
 = hb 'linkTo posts.index' do

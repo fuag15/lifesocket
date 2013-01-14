@@ -22,7 +22,7 @@ class PostsController < ApplicationController
 
   def create
     post = Post.new(params[:post])
-    poast.save
+    post.save
     render json: post
   end
 end
