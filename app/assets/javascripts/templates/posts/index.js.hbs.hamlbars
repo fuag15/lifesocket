@@ -13,8 +13,8 @@
       %td
         = hb 'post.id'
       %td
-        -# hb 'linkTo posts.show post' do
-        = hb 'post.title'
+        = hb 'linkTo post.show post' do
+          = hb 'post.title'
       %td
         = hb 'post.full'
 = hb 'linkTo posts.new' do
