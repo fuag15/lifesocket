@@ -5,7 +5,7 @@ Lifesocket.PostsNewController = Ember.ObjectController.extend
 
   afterCreate: ->
     @content.removeObserver 'id', @, 'afterCreate'
-    @transitionToRoute 'posts.show', @content
+    @transitionToRoute 'post.show', @content
 
   cancel: ->
     @content.deleteRecord()
