@@ -1,18 +1,10 @@
-Lifesocket.Router = Ember.Router.extend(
-  location: "hash"
-  root: Ember.Route.extend(
-    index: Ember.Route.extend(
-      route: "/"
+Lifesocket.Router.reopen
+  rootURL: '/'
+  location: 'history'
 
-      # You'll likely want to connect a view here. * route .extend
-      # connectOutlets: function(router) {
-      #   router.get('applicationController').connectOutlet(App.MainView);
-      # }
-
-      # Layout your routes here...
-    )
-  )
-)
-
-
-
+Lifesocket.Router.map (match) ->
+  match('/').to 'home'
+  match('/posts').to 'posts', (match) ->
+    match('/new').to 'new'
+    match('/:post_id/edit').to 'edit'
+    match('/:post_id').to 'show'

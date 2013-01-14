@@ -11,8 +11,9 @@ gem 'jquery-rails', '~> 2.1.4' # jquery for rails
 gem 'thin', '~> 1.5.0' # use thin web server
 gem 'foreman', '~> 0.60.2' # easily spawn mutiple servers
 gem 'gon', '~> 4.0.1' # pass vars to javascript
-gem 'ember-rails', '~> 0.8.0' # ember.js for rails
+gem 'ember-rails', git: 'http://github.com/emberjs/ember-rails', ref: 'e7273f331370a5a5a4758ee4de40cc' # ember.js for rails
 gem 'haml-rails', '~> 0.3.5' # haml
+gem 'active_model_serializers', '~> 0.6.0' # serializers for jsoning
 
 group :assets do
   gem 'hamlbars', '~> 2.0.0' # haml handlebar assets

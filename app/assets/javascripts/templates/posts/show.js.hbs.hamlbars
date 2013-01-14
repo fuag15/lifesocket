@@ -1,0 +1,13 @@
+%h1
+  = hb 'title'
+%div
+  %q
+    = hb 'content'
+.page-header
+
+= hb 'linkTo posts.index' do
+  .btn
+    Back
+= hb 'linkTo posts.edit' do
+  .btn.btn-primary
+    Edit

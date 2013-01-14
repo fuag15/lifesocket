@@ -1,5 +1,0 @@
-%h1
-  Application
-  %p
-    Your content here.
-  = hb 'outlet'

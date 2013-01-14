@@ -1,0 +1,14 @@
+%h1
+  = hb 'headerTitle' 
+%form
+  %fieldset
+    %div
+      %label{ :bind => { :for => 'titleField.field_id'}} Title
+      = hb 'view Ember.TextField', :valueBinding => 'title', :name => 'title', :viewName => 'titleField'
+    %div
+      %label{ :bind => { :for => 'contentField.elementId'}} content
+      = hb 'view Ember.TextField', :valueBinding => 'content', :name => 'content', :viewName => 'contentField'
+    %a.btn.btn-success{ :_action => 'create target="controller"'}
+      = hb 'buttonTitle'
+.page-header
+%a.btn.btn-inverse{ :_action => 'cancel target="controller"'} Cancel

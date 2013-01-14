@@ -1,0 +1,22 @@
+%h1
+  Posts
+%table.table.table-striped
+  %tr
+    %th
+      ID
+    %th
+      Title
+    %th
+      Content
+  = hb 'each post in posts' do
+    %tr
+      %td
+        = hb 'post.id'
+      %td
+        = hb 'linkTo posts.show post' do
+          = hb 'post.title'
+      %td
+        = hb 'post.content'
+= hb 'linkTo posts.new' do
+  .btn.btn-primary
+    Create
