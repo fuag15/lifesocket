@@ -10,5 +10,4 @@ window.Lifesocket = Ember.Application.create()
 
 Lifesocket.Store = DS.Store.extend
   revision: 11
-  adapter: DS.RESTAdapter.create
-    bulkCommit: false
+  adapter: DS.RESTAdapter.create()
