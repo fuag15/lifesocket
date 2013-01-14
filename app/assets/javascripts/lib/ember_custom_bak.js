@@ -1,5 +1,5 @@
-// Version: v1.0.0-pre.2-395-ge4af09e
-// Last commit: e4af09e (2013-01-13 21:57:54 -0800)
+// Version: v1.0.0-pre.2-393-g71ed443
+// Last commit: 71ed443 (2013-01-13 09:02:01 -0800)
 
 
 (function() {
@@ -142,8 +142,8 @@ if ('undefined' !== typeof window) {
 
 })();
 
-// Version: v1.0.0-pre.2-395-ge4af09e
-// Last commit: e4af09e (2013-01-13 21:57:54 -0800)
+// Version: v1.0.0-pre.2-393-g71ed443
+// Last commit: 71ed443 (2013-01-13 09:02:01 -0800)
 
 
 (function() {
@@ -1149,10 +1149,10 @@ var populateListeners = function(name) {
 };
 
 var time = (function() {
-	var perf = 'undefined' !== typeof window ? window.performance || {} : {};
-	var fn = perf.now || perf.mozNow || perf.webkitNow || perf.msNow || perf.oNow;
-	// fn.bind will be available in all the browsers that support the advanced window.performance... ;-)
-	return fn ? fn.bind(perf) : function() { return +new Date(); };
+  var perf = 'undefined' !== typeof window ? window.performance || {} : {};
+  var fn = perf.now || perf.mozNow || perf.webkitNow || perf.msNow || perf.oNow;
+  // fn.bind will be available in all the browsers that support the advanced window.performance... ;-)
+  return fn ? fn.bind(perf) : function() { return +new Date(); };
 })();
 
 
@@ -8092,7 +8092,7 @@ Ember.Array = Ember.Mixin.create(Ember.Enumerable, /** @scope Ember.Array.protot
     This returns the objects at the specified indexes, using `objectAt`.
 
     ```javascript
-    var arr = ['a', 'b', 'c', 'd'];
+    var arr = ['a', 'b', 'c', 'd'];
     arr.objectsAt([0, 1, 2]);  // ["a", "b", "c"]
     arr.objectsAt([2, 3, 4]);  // ["c", "d", undefined]
     ```
@@ -20014,31 +20014,7 @@ Ember.TextField = Ember.View.extend(Ember.TextSupport,
     @type String
     @default null
   */
-  size: null,
-
-  /**
-    The action to be sent when the user presses the return key.
-
-    This is similar to the `{{action}}` helper, but is fired when
-    the user presses the return key when editing a text field, and sends
-    the value of the field as the context.
-
-   @property action
-   @type String
-   @default null
-  */
-  action: null,
-
-  insertNewline: function() {
-    var controller = get(this, 'controller'),
-        action = get(this, 'action');
-
-    if (action) {
-      controller.send(action, get(this, 'value'));
-    }
-
-    return false;
-  }
+  size: null
 });
 
 })();
@@ -21954,86 +21930,6 @@ define("router",
 
 
 (function() {
-function DSL(name) {
-  this.parent = name;
-  this.matches = [];
-}
-
-DSL.prototype = {
-  resource: function(name, options, callback) {
-    if (arguments.length === 2 && typeof options === 'function') {
-      callback = options;
-      options = {};
-    }
-
-    if (arguments.length === 1) {
-      options = {};
-    }
-
-    if (typeof options.path !== 'string') {
-      options.path = "/" + name;
-    }
-
-    if (callback) {
-      var dsl = new DSL(name);
-      callback.call(dsl);
-      this.push(options.path, name, dsl.generate());
-    } else {
-      this.push(options.path, name);
-    }
-  },
-
-  push: function(url, name, callback) {
-    if (url === "" || url === "/") { this.explicitIndex = true; }
-
-    this.matches.push([url, name, callback]);
-  },
-
-  route: function(name, options) {
-    Ember.assert("You must use `this.resource` to nest", typeof options !== 'function');
-
-    options = options || {};
-
-    if (typeof options.path !== 'string') {
-      options.path = "/" + name;
-    }
-
-    if (this.parent && this.parent !== 'application') {
-      name = this.parent + "." + name;
-    }
-
-    this.push(options.path, name);
-  },
-
-  generate: function() {
-    var dslMatches = this.matches;
-
-    if (!this.explicitIndex) {
-      this.route("index", { path: "/" });
-    }
-
-    return function(match) {
-      for (var i=0, l=dslMatches.length; i<l; i++) {
-        var dslMatch = dslMatches[i];
-        match(dslMatch[0]).to(dslMatch[1], dslMatch[2]);
-      }
-    };
-  }
-};
-
-DSL.map = function(callback) {
-  var dsl = new DSL();
-  callback.call(dsl);
-  return dsl;
-};
-
-Ember.RouterDSL = DSL;
-
-})();
-
-
-
-(function() {
 Ember.controllerFor = function(container, controllerName, context) {
   return container.lookup('controller:' + controllerName) ||
          Ember.generateController(container, controllerName, context);
@@ -22067,6 +21963,7 @@ var Router = requireModule("router");
 var get = Ember.get, set = Ember.set, classify = Ember.String.classify;
 
 var DefaultView = Ember.View.extend(Ember._Metamorph);
+
 function setupLocation(router) {
   var location = get(router, 'location'),
       rootURL = get(router, 'rootURL');
@@ -22092,7 +21989,7 @@ Ember.Router = Ember.Object.extend({
   },
 
   startRouting: function() {
-    this.router = this.router || this.constructor.map(Ember.K);
+    this.router = this.router || this.constructor.map();
 
     var router = this.router,
         location = get(this, 'location'),
@@ -22279,17 +22176,36 @@ function setupRouter(emberRouter, router, location) {
   };
 }
 
+function setupRouterDelegate(router, namespace) {
+  router.delegate = {
+    willAddRoute: function(context, handler) {
+      if (!context) { return handler; }
+
+      if (context === 'application' || context === undefined) {
+        return handler;
+      } else if (handler.indexOf('.') === -1) {
+        context = context.split('.').slice(-1)[0];
+        return context + '.' + handler;
+      } else {
+        return handler;
+      }
+    },
+
+    contextEntered: function(target, match) {
+      match('/').to('index');
+    }
+  };
+}
+
+var emptyMatcherCallback = function(match) { };
+
 Ember.Router.reopenClass({
   map: function(callback) {
     var router = this.router = new Router();
-
-    var dsl = Ember.RouterDSL.map(function() {
-      this.resource('application', { path: "/" }, function() {
-        callback.call(this);
-      });
+    setupRouterDelegate(router, this.namespace);
+    router.map(function(match) {
+      match("/").to("application", callback || emptyMatcherCallback);
     });
-
-    router.map(dsl.generate());
     return router;
   }
 });
@@ -25823,8 +25739,8 @@ Ember States
 
 
 })();
-// Version: v1.0.0-pre.2-395-ge4af09e
-// Last commit: e4af09e (2013-01-13 21:57:54 -0800)
+// Version: v1.0.0-pre.2-393-g71ed443
+// Last commit: 71ed443 (2013-01-13 09:02:01 -0800)
 
 
 (function() {
@@ -25835,4 +25751,3 @@ Ember
 */
 
 })();
-

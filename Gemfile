@@ -27,6 +27,7 @@ end
 
 group :development, :test do
   gem 'factory_girl_rails', '~> 4.1.0' # generate models
+  gem 'jasmine-rails', '~> 0.3.2' # test ember
   gem 'rspec-rails', '~> 2.12.0' # unit tests
   gem 'capybara', '~> 2.0.1' # browser driven story tests
   gem 'spork', '~> 0.9.2' # process management, one server for all tests
@@ -37,7 +38,7 @@ group :development, :test do
   gem 'rb-inotify', '~> 0.8.8', :require => false # guard fs notify for linux
   gem 'rb-fsevent', '~> 0.9.2', :require => false # guard fs notify for OSX
   gem 'rb-fchange', '~> 0.0.6', :require => false # guard fs notify for Windows
-  gem 'guard', '~> 1.5.4' # only rerun things like tests when we change the source since last run! 
+  gem 'guard', '~> 1.5.4' # only rerun things like tests when we change the source since last run!
   gem 'guard-rspec', '~> 2.3.1' # guard for rspec tests
   gem 'guard-cucumber', '~> 1.2.2' # guard for cucumber tests
   gem 'guard-jasmine', '~> 1.10.1' # guard for jasmine tests
