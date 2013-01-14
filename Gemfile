@@ -27,7 +27,6 @@ end
 
 group :development, :test do
   gem 'factory_girl_rails', '~> 4.1.0' # generate models
-  gem 'jasmine-rails', '~> 0.3.2' # test ember
   gem 'rspec-rails', '~> 2.12.0' # unit tests
   gem 'capybara', '~> 2.0.1' # browser driven story tests
   gem 'spork', '~> 0.9.2' # process management, one server for all tests

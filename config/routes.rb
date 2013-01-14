@@ -17,7 +17,7 @@ Lifesocket::Application.routes.draw do
   root :to => 'slate#index'
 
   # jasmin tests
-  mount JasmineRails::Engine => "/specs" unless Rails.env.production?
+  # mount JasmineRails::Engine => "/specs" unless Rails.env.production?
   
   resources :posts, :except => :edit, :constraints => FormatTest.new(:json)
   get '*foo', :to => 'slate#index', :constraints => FormatTest.new(:html)
