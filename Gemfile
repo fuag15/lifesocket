@@ -18,7 +18,7 @@ gem 'active_model_serializers', '~> 0.6.0' # serializers for jsoning
 group :assets do
   gem 'hamlbars', '~> 2.0.0' # haml handlebar assets
   gem 'compass-rails', '~> 1.0.3' # compass for rails
-  gem 'bootstrap-sass', '~> 2.2.1.1' # twitter bootstrap for rails
+  gem 'bootstrap-sass-rails' # twitter bootstrap for rails
   gem 'sass-rails', '~> 3.2.5' # nice sass assets
   gem 'coffee-rails', '~> 3.2.2' # nice coffee asets
   gem 'therubyracer', '~> 0.11.0', :platforms => :ruby # javascript compiler in ruby
