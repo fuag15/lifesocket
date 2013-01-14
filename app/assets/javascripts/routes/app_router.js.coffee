@@ -1,5 +1,4 @@
 Lifesocket.Router.reopen
-  rootURL: '/'
   location: 'history'
 
 Lifesocket.Router.map (match) ->

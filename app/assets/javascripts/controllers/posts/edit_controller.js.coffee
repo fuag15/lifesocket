@@ -1,17 +1,17 @@
-Lifesocket.PostsEditController = Ember.ObjectController.extend
+Lifesocket.PostEditController = Ember.ObjectController.extend
   destroy: ->
     @content.deleteRecord()
     @store.commit()
-    @transitionTo('posts.index')
+    @transitionToRoute 'posts.index'
 
   update: ->
     @store.commit()
-    @transitionTo('posts.show', @content)
+    @transitionToRoute 'post.show', @content
 
   cancel: ->
     if @content.isDirty
       @content.rollback()
-    @transitionTo('posts.show', @content)
+    @transitionToRoute 'post.show', @content
 
   buttonTitle: 'Edit'
   headerTitle: 'Editing'

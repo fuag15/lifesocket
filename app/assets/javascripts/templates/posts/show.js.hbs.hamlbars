@@ -7,6 +7,6 @@
 = hb 'linkTo posts.index' do
   .btn
     Back
-= hb 'linkTo posts.edit' do
+= hb 'linkTo post.edit' do
   .btn.btn-primary
     Edit
