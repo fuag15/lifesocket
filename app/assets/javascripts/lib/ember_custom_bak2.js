@@ -1,5 +1,5 @@
-// Version: v1.0.0-pre.2-397-gd269fa3
-// Last commit: d269fa3 (2013-01-14 21:31:22 -0800)
+// Version: v1.0.0-pre.2-395-ge4af09e
+// Last commit: e4af09e (2013-01-13 21:57:54 -0800)
 
 
 (function() {
@@ -142,8 +142,8 @@ if ('undefined' !== typeof window) {
 
 })();
 
-// Version: v1.0.0-pre.2-397-gd269fa3
-// Last commit: d269fa3 (2013-01-14 21:31:22 -0800)
+// Version: v1.0.0-pre.2-395-ge4af09e
+// Last commit: e4af09e (2013-01-13 21:57:54 -0800)
 
 
 (function() {
@@ -22348,7 +22348,6 @@ Ember.Route = Ember.Object.extend({
     @method setup
   */
   setup: function(context) {
-    this.currentModel = context;
     this.transitioned = false;
     this.redirect(context);
 
@@ -25824,8 +25823,8 @@ Ember States
 
 
 })();
-// Version: v1.0.0-pre.2-397-gd269fa3
-// Last commit: d269fa3 (2013-01-14 21:31:22 -0800)
+// Version: v1.0.0-pre.2-395-ge4af09e
+// Last commit: e4af09e (2013-01-13 21:57:54 -0800)
 
 
 (function() {

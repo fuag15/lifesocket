@@ -3,13 +3,12 @@ Lifesocket.PostsRoute = Ember.Route.extend
     @controllerFor('application').set 'currentRoute', 'posts'
 
 Lifesocket.PostShowRoute = Ember.Route.extend
-  model: (params) ->
-    console.log params
-    Lifesocket.Post.find params.post_id
+  model: ->
+    console.log @modelFor('post')
+    @modelFor('post')
 
 Lifesocket.PostEditRoute = Ember.Route.extend
   model: (params) ->
-    console.log params
     Lifesocket.Post.find params.post_id
 
 Lifesocket.PostsIndexRoute = Lifesocket.PostsRoute.extend
