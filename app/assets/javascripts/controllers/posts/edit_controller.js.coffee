@@ -4,7 +4,7 @@ Lifesocket.PostEditController = Ember.ObjectController.extend
     @store.commit()
     @transitionToRoute 'posts.index'
 
-  update: ->
+  create: ->
     @store.commit()
     @transitionToRoute 'post.show', @content
 
