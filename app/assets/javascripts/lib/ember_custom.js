@@ -1,5 +1,5 @@
-// Version: v1.0.0-pre.2-397-gd269fa3
-// Last commit: d269fa3 (2013-01-14 21:31:22 -0800)
+// Version: v1.0.0-pre.2-414-g6e64bac
+// Last commit: 6e64bac (2013-01-16 19:18:17 -0800)
 
 
 (function() {
@@ -142,8 +142,8 @@ if ('undefined' !== typeof window) {
 
 })();
 
-// Version: v1.0.0-pre.2-397-gd269fa3
-// Last commit: d269fa3 (2013-01-14 21:31:22 -0800)
+// Version: v1.0.0-pre.2-414-g6e64bac
+// Last commit: 6e64bac (2013-01-16 19:18:17 -0800)
 
 
 (function() {
@@ -6125,6 +6125,13 @@ define("container",
 
         delete this.parent;
         this.isDestroyed = true;
+      },
+
+      reset: function() {
+        for (var i=0, l=this.children.length; i<l; i++) {
+          resetCache(this.children[i]);
+        }
+        resetCache(this);
       }
     };
 
@@ -6203,6 +6210,14 @@ define("container",
         if (option(container, key, 'instantiate') === false) { return; }
         callback(value);
       });
+    }
+
+    function resetCache(container) {
+      container.cache.eachLocal(function(key, value) {
+        if (option(container, key, 'instantiate') === false) { return; }
+        value.destroy();
+      });
+      container.cache.dict = {};
     }
 
     return Container;
@@ -6645,7 +6660,7 @@ Ember.Error.prototype = Ember.create(Error.prototype);
 var STRING_DASHERIZE_REGEXP = (/[ _]/g);
 var STRING_DASHERIZE_CACHE = {};
 var STRING_DECAMELIZE_REGEXP = (/([a-z])([A-Z])/g);
-var STRING_CAMELIZE_REGEXP = (/(\-|_|\s)+(.)?/g);
+var STRING_CAMELIZE_REGEXP = (/(\-|_|\.|\s)+(.)?/g);
 var STRING_UNDERSCORE_REGEXP_1 = (/([a-z\d])([A-Z]+)/g);
 var STRING_UNDERSCORE_REGEXP_2 = (/\-|\s+/g);
 
@@ -21548,15 +21563,31 @@ define("router",
         var handlers = this.recognizer.handlersFor(handlerName),
             params = {},
             toSetup = [],
-            object, handlerObj, handler, names;
+            startIdx = handlers.length,
+            objectsToMatch = objects.length,
+            object, handlerObj, handler, names, i, len;
 
-        for (var i=handlers.length-1; i>=0; i--) {
+        // Find out which handler to start matching at
+        for (i=handlers.length-1; i>=0 && objectsToMatch>0; i--) {
+          if (handlers[i].names.length) {
+            objectsToMatch--;
+            startIdx = i;
+          }
+        }
+
+        if (objectsToMatch > 0) {
+          throw "More objects were passed than dynamic segments";
+        }
+
+        // Connect the objects to the routes
+        for (i=0, len=handlers.length; i<len; i++) {
           handlerObj = handlers[i];
           handler = this.getHandler(handlerObj.handler);
           names = handlerObj.names;
 
           if (names.length) {
-            if (objects.length) { object = objects.pop(); }
+            // Don't use objects if we haven't gotten to the match point yet
+            if (i >= startIdx && objects.length) { object = objects.shift(); }
             else { object = handler.context; }
 
             if (handler.serialize) {
@@ -21564,9 +21595,18 @@ define("router",
             }
           } else if (callback) {
             object = callback(handler);
+          } else {
+            object = undefined;
           }
 
-          toSetup.unshift({
+
+          // Make sure that we update the context here so it's available to
+          // subsequent deserialize calls
+          if (handler.context !== object) {
+            setContext(handler, object);
+          }
+
+          toSetup.push({
             isDynamic: !!handlerObj.names.length,
             handler: handlerObj.handler,
             name: handlerObj.name,
@@ -21799,13 +21839,13 @@ define("router",
       });
 
       eachHandler(partition.updatedContext, function(handler, context) {
-        handler.context = context;
+        setContext(handler, context);
         if (handler.setup) { handler.setup(context); }
       });
 
       eachHandler(partition.entered, function(handler, context) {
         if (handler.enter) { handler.enter(); }
-        handler.context = context;
+        setContext(handler, context);
         if (handler.setup) { handler.setup(context); }
       });
 
@@ -21946,6 +21986,11 @@ define("router",
         }
       }
     }
+
+    function setContext(handler, context) {
+      handler.context = context;
+      if (handler.contextDidChange) { handler.contextDidChange(); }
+    }
     return Router;
   });
 
@@ -22043,9 +22088,13 @@ Ember.generateController = function(container, controllerName, context) {
   var controller;
 
   if (context && Ember.isArray(context)) {
-    controller = Ember.ArrayController.extend({content: context});
+    controller = Ember.ArrayController.extend({
+      content: context
+    });
   } else if (context) {
-    controller = Ember.ObjectController.extend({content: context});
+    controller = Ember.ObjectController.extend({
+      content: context
+    });
   } else {
     controller = Ember.Controller.extend();
   }
@@ -22218,7 +22267,7 @@ function getHandlerFunction(router) {
       handler = container.lookup('route:' + name);
     }
 
-    handler.templateName = name;
+    handler.routeName = name;
     return handler;
   };
 }
@@ -22348,13 +22397,16 @@ Ember.Route = Ember.Object.extend({
     @method setup
   */
   setup: function(context) {
-    this.currentModel = context;
     this.transitioned = false;
     this.redirect(context);
 
     if (this.transitioned) { return; }
 
-    var controller = this.controllerFor(this.templateName, context);
+    var controller = this.controllerFor(this.routeName, context);
+
+    if (controller) {
+      set(controller, 'model', context);
+    }
 
     if (this.setupControllers) {
       Ember.deprecate("Ember.Route.setupControllers is deprecated. Please use Ember.Route.setupController(controller, model) instead.");
@@ -22393,6 +22445,15 @@ Ember.Route = Ember.Object.extend({
   deserialize: function(params) {
     var model = this.model(params);
     return this.currentModel = model;
+  },
+
+  /**
+    @private
+
+    Called when the context is changed by router.js.
+  */
+  contextDidChange: function() {
+    this.currentModel = this.context;
   },
 
   /**
@@ -22509,11 +22570,7 @@ Ember.Route = Ember.Object.extend({
 
     @method setupController
   */
-  setupController: function(controller, model) {
-    if (controller) {
-      controller.set('content', model);
-    }
-  },
+  setupController: Ember.K,
 
   /**
     Returns the controller for a particular route.
@@ -22541,6 +22598,9 @@ Ember.Route = Ember.Object.extend({
 
     if (!controller) {
       model = model || this.modelFor(name);
+
+      Ember.assert("You are trying to look up a controller that you did not define, and for which Ember does not know the model.\n\nThis is not a controller for a route, so you must explicitly define the controller ("+this.router.namespace.toString() + "." + Ember.String.capitalize(Ember.String.camelize(name))+"Controller) or pass a model as the second parameter to `controllerFor`, so that Ember knows which type of controller to create for you.", model || this.container.lookup('route:' + name));
+
       controller = Ember.generateController(container, name, model);
     }
 
@@ -22558,7 +22618,8 @@ Ember.Route = Ember.Object.extend({
     @return {Object} the model object
   */
   modelFor: function(name) {
-    return this.container.lookup('route:' + name).currentModel;
+    var route = this.container.lookup('route:' + name);
+    return route && route.currentModel;
   },
 
   /**
@@ -22633,10 +22694,10 @@ Ember.Route = Ember.Object.extend({
   render: function(name, options) {
     if (typeof name === 'object' && !options) {
       options = name;
-      name = this.templateName;
+      name = this.routeName;
     }
 
-    name = name || this.templateName;
+    name = name ? name.replace(/\//g, '.') : this.routeName;
 
     var container = this.container,
         view = container.lookup('view:' + name),
@@ -22679,12 +22740,12 @@ function parentTemplate(route) {
 
 function normalizeOptions(route, name, template, options) {
   options = options || {};
-  options.into = options.into || parentTemplate(route);
+  options.into = options.into ? options.into.replace(/\//g, '.') : parentTemplate(route);
   options.outlet = options.outlet || 'main';
   options.name = name;
   options.template = template;
 
-  var controller = options.controller || route.templateName;
+  var controller = options.controller || route.routeName;
 
   if (typeof controller === 'string') {
     controller = route.container.lookup('controller:' + controller);
@@ -22978,6 +23039,7 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
       context = Ember.Handlebars.get(options.contexts[1], context, options);
     }
 
+    name = name.replace(/\//g, '.');
     container = options.data.keywords.controller.container;
     router = container.lookup('router:main');
 
@@ -22997,7 +23059,7 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
 
     controller.set('target', options.data.keywords.controller);
 
-    options.hash.viewName = name;
+    options.hash.viewName = Ember.String.camelize(name);
     options.hash.template = container.lookup('template:' + name);
     options.hash.controller = controller;
 
@@ -23289,6 +23351,22 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
 
 (function() {
 var get = Ember.get, set = Ember.set;
+var ControllersProxy = Ember.Object.extend({
+  controller: null,
+
+  unknownProperty: function(controllerName) {
+    var controller = get(this, 'controller'),
+      needs = get(controller, 'needs'),
+      dependency;
+
+    for (var i=0, l=needs.length; i<l; i++) {
+      dependency = needs[i];
+      if (dependency === controllerName) {
+        return controller.controllerFor(controllerName);
+      }
+    }
+  }
+});
 
 Ember.ControllerMixin.reopen({
   concatenatedProperties: ['needs'],
@@ -23331,7 +23409,11 @@ Ember.ControllerMixin.reopen({
     } else {
       return get(this, 'content');
     }
-  }).property('content')
+  }).property('content'),
+
+  controllers: Ember.computed(function() {
+    return ControllersProxy.create({ controller: this });
+  })
 });
 
 function verifyDependencies(controller) {
@@ -23347,7 +23429,7 @@ function verifyDependencies(controller) {
 
     if (!container.has(dependency)) {
       satisfied = false;
-      Ember.assert(this + " needs " + dependency + " but it does not exist", false);
+      Ember.assert(controller + " needs " + dependency + " but it does not exist", false);
     }
   }
 
@@ -25824,8 +25906,8 @@ Ember States
 
 
 })();
-// Version: v1.0.0-pre.2-397-gd269fa3
-// Last commit: d269fa3 (2013-01-14 21:31:22 -0800)
+// Version: v1.0.0-pre.2-414-g6e64bac
+// Last commit: 6e64bac (2013-01-16 19:18:17 -0800)
 
 
 (function() {

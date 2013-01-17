@@ -1,6 +1,6 @@
-%h1
+%br
   = hb 'title'
-%q
+%br
   = hb 'full'
 .page-header
 
