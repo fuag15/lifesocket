@@ -1,3 +1,6 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :id, :title, :full
+  embed :ids
+  attributes :id, :title, :full, :picture
+
+  has_many :post_pictures
 end

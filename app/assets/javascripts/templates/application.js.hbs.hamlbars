@@ -1,17 +1,28 @@
-.navbar.navbar-inverse.navbar-fixed-top
-  .navbar-inner
-    .container
-      .nav-collapse.collapse
-        %ul.nav
-          %li
-            = hb 'linkTo home' do
-              Home
-          %li
-            = hb 'linkTo posts.index' do
-              Posts
-.container#main
-  .content
-    .row
-      .span12
-        .page-header
-          = hb 'outlet'
+#Center
+  #Holder
+    #topMainBorder
+    #dropShadowHolder
+      #leftMainBorder
+      #BackGround
+        #Text
+          %center
+            #mainTitle
+              MAIN TITLE
+          %br
+          %br
+          BODY
+          = hb 'linkTo home' do
+            Home
+          = hb 'linkTo posts.index' do
+            Posts
+          .container
+            .content
+              .row
+                .span12
+                  .page-header
+                    = hb 'outlet'
+  NAVIGATION
+  #clear
+  .Sig
+    %i
+      C 2013 Michael Boone

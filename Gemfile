@@ -1,6 +1,6 @@
-source 'https://rubygems.org'
+source 'https://rubygems.org' # community gem host
 
-gem 'rails', '3.2.9' # hardset ruby version
+gem 'rails', '3.2.11' # rails hard set
 gem 'pg', '~> 0.14.1' # postgresql adapter
 gem 'devise', '~> 2.1.2' # user control
 gem 'cancan', '~> 1.6.8' # user ability
@@ -48,7 +48,7 @@ group :test do
   gem 'cucumber-rails', '~> 1.3.0' # story based tests
 end
 
-group :production do
+group :production do # explicit production asset gems for heroku
   gem 'compass-rails', '~> 1.0.3' # compass for rails
   gem 'bootstrap-sass-rails' # twitter bootstrap for rails
   gem 'hamlbars', '~> 2.0.0' # haml handlebar assets
