@@ -1,2 +1,27 @@
-%h1
-  Welcome
+%center
+  #mainTitle
+    Slash dev Slash Boone
+%br
+%br
+%img{:src => "/assets/DavisDeathStar.jpg"}
+%br
+%br
+-# each blog post
+%br
+%br
+#EntryHolder
+  #EntryLine
+    .EntryHeader
+      Month, Day, Year
+#blogImage
+  %a
+    Link to image
+Post Full
+#clear
+-# each post picture
+#blogExtraImage
+  %a
+    Link to image
+#clear
+-# eand each picture
+-# eand each post

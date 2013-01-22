@@ -5,24 +5,57 @@
       #leftMainBorder
       #BackGround
         #Text
-          %center
-            #mainTitle
-              MAIN TITLE
+          = hb 'outlet'
+  .Nav
+    .TimeStamp
+      %a
+        %center
+          Last Edited:
           %br
-          %br
-          BODY
-          = hb 'linkTo home' do
-            Home
-          = hb 'linkTo posts.index' do
-            Posts
-          .container
-            .content
-              .row
-                .span12
-                  .page-header
-                    = hb 'outlet'
-  NAVIGATION
+          %b
+            Month, Day, Year
+            %br
+            Hour, Minute, Second
+    #TimeStampBot
+    %a
+      #PicBoxTop
+      #PicBoxLeft
+      #PicBox
+      #PicBoxRight
+      #clear
+      #PicBoxBot
+      .NavHolder
+        Clients
+    %a
+      #PicBoxTop
+      #PicBoxLeft
+      #PicBoxProj
+      #PicBoxRight
+      #clear
+      #PicBoxBot
+      .NavHolder
+        Projects
+    %a
+      #PicBoxTop
+      #PicBoxLeft
+      #PicBoxResume
+      #PicBoxRight
+      #clear
+      #PicBoxBot
+      .NavHolder
+        Resume
+    %a
+      #PicBoxTop
+      #PicBoxLeft
+      #PicBoxContact
+      #PicBoxRight
+      #clear
+      #PicBoxBot
+      .NavHolder
+        Contact
   #clear
   .Sig
     %i
-      C 2013 Michael Boone
+      C
+      = hb 'lastEditedYear'
+      Michael Boone
