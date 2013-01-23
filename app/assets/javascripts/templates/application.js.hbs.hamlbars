@@ -8,16 +8,16 @@
           = hb 'outlet'
   .Nav
     .TimeStamp
-      %a
+      = hb 'linkTo home' do
         %center
           Last Edited:
           %br
           %b
-            Month, Day, Year
+            = hb 'lastEditedMonth'
             %br
-            Hour, Minute, Second
+            = hb 'lastEditedDetail'
     #TimeStampBot
-    %a
+    = hb 'linkTo work' do
       #PicBoxTop
       #PicBoxLeft
       #PicBox
@@ -26,7 +26,7 @@
       #PicBoxBot
       .NavHolder
         Clients
-    %a
+    = hb 'linkTo play' do
       #PicBoxTop
       #PicBoxLeft
       #PicBoxProj
@@ -44,7 +44,7 @@
       #PicBoxBot
       .NavHolder
         Resume
-    %a
+    = hb 'linkTo contact' do
       #PicBoxTop
       #PicBoxLeft
       #PicBoxContact

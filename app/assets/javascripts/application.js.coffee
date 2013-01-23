@@ -5,4 +5,5 @@
 #= require handlbars
 #= require ember
 #= require ember-data
+#= require_tree ./lib
 #= require lifesocket

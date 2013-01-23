@@ -1,5 +1,5 @@
 class JobCategorySerializer < ActiveModel::Serializer
-  embed :ids
+  embed :ids, :include => true
 
   attributes :id, :name, :rank
 

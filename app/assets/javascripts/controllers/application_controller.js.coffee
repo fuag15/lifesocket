@@ -1,12 +1,4 @@
 Lifesocket.ApplicationController = Ember.Controller.extend
-  isHome: (->
-    @get('currentRoute') == 'home'
-  ).property 'currentRoute'
-
-  isUsers: (->
-    @get('currentRoute') == 'posts'
-  ).property 'currentRoute'
-
   lastEditedYear: (->
     date = new Date()
     date.getFullYear()
@@ -14,10 +6,10 @@ Lifesocket.ApplicationController = Ember.Controller.extend
 
   lastEditedMonth: (->
     date = new Date()
-    "#{date.getMonth()} #{date.getDate()}, #{date.getFullYear()}"
+    "#{window.lifesocket.util.month_names[date.getMonth()]} #{date.getDate()}, #{date.getFullYear()}"
   ).property 'lastEditedMonth'
 
   lastEditedDetail: (->
     date = new Date()
-    "#{date.getHours()}:#{date.getMinutes()}:#{date.getSeconds()}"
+    "#{("0" + date.getHours()).slice(-2)}:#{("0" + date.getMinutes()).slice(-2)}:#{("0" + date.getSeconds()).slice(-2)}"
   ).property 'lastEditedDetail'

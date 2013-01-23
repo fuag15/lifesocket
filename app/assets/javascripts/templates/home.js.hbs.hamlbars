@@ -6,22 +6,18 @@
 %img{:src => "/assets/DavisDeathStar.jpg"}
 %br
 %br
--# each blog post
-%br
-%br
-#EntryHolder
-  #EntryLine
-    .EntryHeader
-      Month, Day, Year
-#blogImage
-  %a
-    Link to image
-Post Full
-#clear
--# each post picture
-#blogExtraImage
-  %a
-    Link to image
-#clear
--# eand each picture
--# eand each post
+= hb 'each post in content' do
+  %br
+  %br
+  #EntryHolder
+    #EntryLine
+      .EntryHeader
+        = hb 'post.humanDate'
+  #blogImage
+    = hb 'imageSrc post.thumb'
+  = hb 'post.full'
+  #clear
+  = hb 'each post_picture in post.postPictures' do
+    #blogExtraImage
+      = hb 'imageSrc post_picture.thumb'
+  #clear

@@ -1,0 +1,2 @@
+$ ->
+  # app init code here

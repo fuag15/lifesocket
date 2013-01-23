@@ -1,3 +1,6 @@
 Lifesocket.HomeRoute = Ember.Route.extend
-  setupController: (controller, model) ->
-    @controllerFor('application').set 'currentRoute', 'home'
+  model: ->
+    if Lifesocket.Post.isLoaded()
+      Lifesocket.Post.all()
+    else
+      Lifesocket.Post.find()

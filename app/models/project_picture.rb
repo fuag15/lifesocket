@@ -3,5 +3,5 @@ class ProjectPicture < ActiveRecord::Base
   mount_uploader :picture, PictureUploader
 
   has_many :pictures_projects
-  has_many :projects, through: :pictures_projects, foriegn_key: 'project_id'
+  has_many :projects, through: :pictures_projects
 end

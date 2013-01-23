@@ -3,5 +3,5 @@ class PostPicture < ActiveRecord::Base
   mount_uploader :picture, PictureUploader
 
   has_many :pictures_posts
-  has_many :posts, through: :pictures_posts, foriegn_key: 'post_id'
+  has_many :posts, through: :pictures_posts
 end

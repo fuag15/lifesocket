@@ -1,0 +1,23 @@
+%center
+  #mainTitle
+    Projects
+%br
+%br
+%img{:src => "/assets/DavisDeathStar.jpg"}
+%br
+%br
+= hb 'each projectCategory in content' do 
+  #categorySeperator
+    = hb 'projectCategory.name'
+    = hb 'each projectInstance in projectCategory.projects' do
+      = hb 'linkTo job.show projectInstance' do
+        #subTitle
+          = hb 'projectInstance.name'
+        %br
+        %center
+          #projectImage
+            = hb 'imageSrc projectInstance.thumb'
+        %br
+        %br
+        = hb 'projectInstance.blurb'
+  #clear

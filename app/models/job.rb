@@ -4,5 +4,5 @@ class Job < ActiveRecord::Base
   
   belongs_to :job_category
   has_many :jobs_pictures
-  has_many :job_pictures, through: :jobs_pictures, foriegn_key: 'job_picture_id'
+  has_many :job_pictures, through: :jobs_pictures
 end
