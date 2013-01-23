@@ -11,3 +11,4 @@ TODO
 * put up on host / minify production
 * test email
 * unit tests
+* clean up haml / sass
