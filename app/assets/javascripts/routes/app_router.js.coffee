@@ -18,7 +18,7 @@ Lifesocket.Router.map (match) ->
           @route 'edit'
   @resource 'jobCategories', ->
     @route 'new'
-    @resource 'jobCategory', ->
+    @resource 'jobCategory', path: '/:job_category_id', ->
       @route 'show'
       @route 'edit'
       @resource 'jobs', ->
@@ -33,7 +33,7 @@ Lifesocket.Router.map (match) ->
               @route 'edit'
   @resource 'projectCategories', ->
     @route 'new'
-    @resource 'projectCategory', ->
+    @resource 'projectCategory', path: '/:project_category_id', ->
       @route 'show'
       @route 'edit'
       @resource 'projects', ->
