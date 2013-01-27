@@ -10,5 +10,4 @@
       = hb 'view Ember.TextField', :valueBinding => 'full', :name => 'full', :viewName => 'fullField'
     %a.btn.btn-success{ :_action => 'create target="controller"'}
       = hb 'buttonTitle'
-.page-header
 %a.btn.btn-inverse{ :_action => 'cancel target="controller"'} Cancel

@@ -1,12 +1,8 @@
 %br
-  = hb 'title'
-%br
-  = hb 'full'
-.page-header
-
-= hb 'linkTo posts.index' do
+  = hb 'imageSrc thumb'
+= hb 'linkTo postPictures.index' do
   .btn
     Back
-= hb 'linkTo post.edit' do
+= hb 'linkTo postPicture.edit' do
   .btn.btn-primary
     Edit

@@ -1,2 +1,0 @@
-= hb 'template postPictures/form'
-%a.btn.btn-danger{ :_action => 'destroy' } Destroy

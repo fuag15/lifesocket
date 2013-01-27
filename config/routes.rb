@@ -20,38 +20,38 @@ Lifesocket::Application.routes.draw do
   resources :token_authentications, only: [:create, :destroy], constraints: FormatTest.new(:json)
   
   resources :jobs, except: :edit, constraints: FormatTest.new(:json) do
-    resources :job_pictures, except: :edit, contraints: FormatTest.new(:json)
+    resources :job_pictures, except: :edit
   end
 
   resources :job_categories, except: :edit, constraints: FormatTest.new(:json) do
-    resources :jobs, except: :edit, constraints: FormatTest.new(:json) do
-      resources :job_pictures, except: :edit, contraints: FormatTest.new(:json)
+    resources :jobs, except: :edit do
+      resources :job_pictures, except: :edit
     end
   end
 
   resources :job_pictures, except: :edit, constraints: FormatTest.new(:json)
   
   resources :posts, except: :edit, constraints: FormatTest.new(:json) do
-    resources :post_pictures, except: :edit, constraints: FormatTest.new(:json)
+    resources :post_pictures, except: :edit
   end
 
   resources :post_pictures, except: :edit, constraints: FormatTest.new(:json)
   
   resources :projects, except: :edit, constraints: FormatTest.new(:json) do
-    resources :project_packages, except: :edit, constraints: FormatTest.new(:json)
-    resources :project_pictures, except: :edit, constraints: FormatTest.new(:json)
+    resources :project_packages, except: :edit
+    resources :project_pictures, except: :edit
   end
   
   resources :project_categories, except: :edit, constraints: FormatTest.new(:json) do
-    resources :projects, except: :edit, constraints: FormatTest.new(:json) do
-      resources :project_packages, except: :edit, constraints: FormatTest.new(:json)
-      resources :project_pictures, except: :edit, constraints: FormatTest.new(:json)
+    resources :projects, except: :edit do
+      resources :project_packages, except: :edit
+      resources :project_pictures, except: :edit
     end
   end
   
   resources :project_packages, except: :edit, constraints: FormatTest.new(:json)
   resources :project_pictures, except: :edit, constraints: FormatTest.new(:json)
-  
+
   root to: 'slate#index'
 
   # redirect everything else to ember

@@ -1,9 +1,5 @@
 %br
-  = hb 'title'
-%br
-  = hb 'full'
-.page-header
-
+  = hb 'name'
 = hb 'linkTo posts.index' do
   .btn
     Back

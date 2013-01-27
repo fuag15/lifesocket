@@ -1,12 +1,20 @@
 %br
-  = hb 'title'
+  = hb 'name'
 %br
-  = hb 'full'
-.page-header
-
-= hb 'linkTo posts.index' do
+  = hb 'text'
+%br
+  = hb 'version'
+%br
+  = hb 'detail'
+%br
+  = hb 'team'
+%br
+  = hb 'rank'
+%br
+  = hb 'imageSrc thumb'
+= hb 'linkTo projects.index' do
   .btn
     Back
-= hb 'linkTo post.edit' do
+= hb 'linkTo project.edit' do
   .btn.btn-primary
     Edit

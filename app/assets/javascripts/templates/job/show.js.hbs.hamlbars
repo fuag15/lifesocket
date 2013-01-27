@@ -1,12 +1,26 @@
 %br
-  = hb 'title'
+  = hb 'name'
 %br
-  = hb 'full'
-.page-header
-
-= hb 'linkTo posts.index' do
+  = hb 'text'
+%br
+  = hb 'detail'
+%br
+  = hb 'employer'
+%br
+  = hb 'rank'
+%br
+  = hb 'imageSrc pic'
+%br
+  = hb 'imageSrc thumb'
+%br
+  = hb 'imageSrc mini'
+%br
+  = hb 'imageSrc medium'
+%br
+  = hb 'imageSrc large'
+= hb 'linkTo jobs.index' do
   .btn
     Back
-= hb 'linkTo post.edit' do
+= hb 'linkTo job.edit' do
   .btn.btn-primary
     Edit

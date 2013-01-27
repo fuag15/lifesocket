@@ -1,12 +1,6 @@
-%br
-  = hb 'title'
-%br
-  = hb 'full'
-.page-header
-
-= hb 'linkTo posts.index' do
+= hb 'linkTo projectPictures.index' do
   .btn
     Back
-= hb 'linkTo post.edit' do
+= hb 'linkTo projectPicture.edit' do
   .btn.btn-primary
     Edit

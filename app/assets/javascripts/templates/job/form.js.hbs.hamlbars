@@ -1,0 +1,22 @@
+%h1
+  = hb 'headerTitle' 
+%form
+  %fieldset
+    %div
+      %label{ :bind => { :for => 'titleField.elementId'}} Name
+      = hb 'view Ember.TextField', :valueBinding => 'name', :name => 'name', :viewName => 'nameField'
+    %div
+      %label{ :bind => { :for => 'textField.elementId'}} Text
+      = hb 'view Ember.TextField', :valueBinding => 'text', :name => 'text', :viewName => 'textField'
+    %div
+      %label{ :bind => { :for => 'detailField.elementId'}} detail
+      = hb 'view Ember.detailField', :valueBinding => 'detail', :name => 'detail', :viewName => 'detailField'
+    %div
+      %label{ :bind => { :for => 'employerField.elementId'}} employer
+      = hb 'view Ember.employerField', :valueBinding => 'employer', :name => 'employer', :viewName => 'employerField'
+    %div
+      %label{ :bind => { :for => 'rankField.elementId'}} rank
+      = hb 'view Ember.rankField', :valueBinding => 'rank', :name => 'rank', :viewName => 'rankField'
+    %a.btn.btn-success{ :_action => 'create target="controller"'}
+      = hb 'buttonTitle'
+%a.btn.btn-inverse{ :_action => 'cancel target="controller"'} Cancel

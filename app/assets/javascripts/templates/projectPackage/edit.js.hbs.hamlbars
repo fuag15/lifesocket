@@ -1,2 +1,2 @@
-= hb 'template "posts/form"'
+= hb 'template "projectPackage/form"'
 %a.btn.btn-danger{ :_action => 'destroy' } Destroy

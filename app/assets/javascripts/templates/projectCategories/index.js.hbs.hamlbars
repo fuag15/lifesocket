@@ -1,30 +1,18 @@
 %h1
-  Posts
+  Project Categories
 %table.table.table-striped
   %tr
     %th
       ID
     %th
-      Title
-    %th
-      Content
-    %th
-      Created
-    %th
-      Picture
-  = hb 'each post in content' do
+      Name
+  = hb 'each projectCategory in content' do
     %tr
       %td
-        = hb 'post.id'
+        = hb 'projectCategory.id'
       %td
-        = hb 'linkTo post.show post' do
-          = hb 'post.title'
-      %td
-        = hb 'post.full'
-      %td
-        = hb 'post.humanDate'
-      %td
-        = hb 'post.thumb'
-= hb 'linkTo posts.new' do
+        = hb 'linkTo projectCategory.show projectCategory' do
+          = hb 'projectCategory.name'
+= hb 'linkTo projectCategories.new' do
   .btn.btn-primary
     Create

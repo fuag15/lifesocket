@@ -1,0 +1,7 @@
+%h1
+  = hb 'headerTitle' 
+%form
+  %fieldset
+    %a.btn.btn-success{ :_action => 'create target="controller"'}
+      = hb 'buttonTitle'
+%a.btn.btn-inverse{ :_action => 'cancel target="controller"'} Cancel

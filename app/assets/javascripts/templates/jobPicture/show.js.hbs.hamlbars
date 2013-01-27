@@ -2,11 +2,9 @@
   = hb 'title'
 %br
   = hb 'full'
-.page-header
-
-= hb 'linkTo posts.index' do
+= hb 'linkTo jobPictures.index' do
   .btn
     Back
-= hb 'linkTo post.edit' do
+= hb 'linkTo jobPicture.edit' do
   .btn.btn-primary
     Edit

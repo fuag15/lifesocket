@@ -1,30 +1,42 @@
 %h1
-  Posts
+  Projects
 %table.table.table-striped
   %tr
     %th
       ID
     %th
-      Title
+      name
     %th
-      Content
+      text
     %th
-      Created
+      version
+    %th
+      detail
+    %th
+      team
+    %th
+      rank
     %th
       Picture
-  = hb 'each post in content' do
+  = hb 'each project in content' do
     %tr
       %td
-        = hb 'post.id'
+        = hb 'project.id'
       %td
-        = hb 'linkTo post.show post' do
-          = hb 'post.title'
+        = hb 'linkTo project.show project' do
+          = hb 'project.name'
       %td
-        = hb 'post.full'
+        = hb 'project.text'
       %td
-        = hb 'post.humanDate'
+        = hb 'project.version'
       %td
-        = hb 'post.thumb'
-= hb 'linkTo posts.new' do
+        = hb 'project.detail'
+      %td
+        = hb 'project.team'
+      %td
+        = hb 'project.rank'
+      %td
+        = hb 'imageSrc project.thumb'
+= hb 'linkTo projects.new' do
   .btn.btn-primary
     Create
