@@ -6,20 +6,17 @@
       %label{ :bind => { :for => 'nameField.elementId'}} name
       = hb 'view Ember.TextField', :valueBinding => 'name', :name => 'name', :viewName => 'nameField'
     %div
-      %label{ :bind => { :for => 'textField.elementId'}} text
-      = hb 'view Ember.TextField', :valueBinding => 'text', :name => 'text', :viewName => 'textField'
-    %div
       %label{ :bind => { :for => 'versionField.elementId'}} version
-      = hb 'view Ember.versionField', :valueBinding => 'version', :name => 'version', :viewName => 'versionField'
+      = hb 'view Ember.TextField', :valueBinding => 'version', :name => 'version', :viewName => 'versionField'
     %div
       %label{ :bind => { :for => 'detailField.elementId'}} detail
-      = hb 'view Ember.detailField', :valueBinding => 'detail', :name => 'detail', :viewName => 'detailField'
+      = hb 'view Ember.TextField', :valueBinding => 'detail', :name => 'detail', :viewName => 'detailField'
     %div
       %label{ :bind => { :for => 'teamField.elementId'}} team
-      = hb 'view Ember.teamField', :valueBinding => 'team', :name => 'team', :viewName => 'teamField'
+      = hb 'view Ember.TextField', :valueBinding => 'team', :name => 'team', :viewName => 'teamField'
     %div
       %label{ :bind => { :for => 'rankField.elementId'}} rank
-      = hb 'view Ember.rankField', :valueBinding => 'rank', :name => 'rank', :viewName => 'rankField'
+      = hb 'view Ember.TextField', :valueBinding => 'rank', :name => 'rank', :viewName => 'rankField'
     %a.btn.btn-success{ :_action => 'create target="controller"'}
       = hb 'buttonTitle'
 %a.btn.btn-inverse{ :_action => 'cancel target="controller"'} Cancel

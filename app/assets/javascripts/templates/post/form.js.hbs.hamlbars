@@ -8,6 +8,9 @@
     %div
       %label{ :bind => { :for => 'fullField.elementId'}} Full
       = hb 'view Ember.TextField', :valueBinding => 'full', :name => 'full', :viewName => 'fullField'
+    %div
+      %label{ :bind => { :for => 'pictureField.elementId'}} Picture
+      = hb 'view Lifesocket.FileView', :fileBinding => 'picture'
     %a.btn.btn-success{ :_action => 'create target="controller"'}
       = hb 'buttonTitle'
 %a.btn.btn-inverse{ :_action => 'cancel target="controller"'} Cancel

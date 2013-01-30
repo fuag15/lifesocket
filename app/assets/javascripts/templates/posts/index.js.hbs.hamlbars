@@ -24,7 +24,7 @@
       %td
         = hb 'post.humanDate'
       %td
-        = hb 'post.thumb'
+        = hb 'post.picture.thumb'
 = hb 'linkTo posts.new' do
   .btn.btn-primary
     Create

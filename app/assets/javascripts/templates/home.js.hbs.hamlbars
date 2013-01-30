@@ -14,10 +14,12 @@
       .EntryHeader
         = hb 'post.humanDate'
   #blogImage
-    = hb 'imageSrc post.thumb'
+    = hb 'if post.picture.picture.thumb.url' do
+      = hb 'imageSrc post.picture.picture.thumb.url'
   = hb 'post.full'
   #clear
   = hb 'each post_picture in post.postPictures' do
     #blogExtraImage
-      = hb 'imageSrc post_picture.thumb'
+      = hb 'if post_picture.picture.thumb.url' do
+        = hb 'imageSrc post_picture.picture.thumb.url'
   #clear

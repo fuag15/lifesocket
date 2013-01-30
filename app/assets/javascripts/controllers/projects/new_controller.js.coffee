@@ -11,5 +11,7 @@ Lifesocket.ProjectsNewController = Ember.ObjectController.extend
     @content.deleteRecord()
     @transitionToRoute 'projects.index'
 
+  needs: ['projectCategory']
+
   buttonTitle: 'Create'
   headerTitle: 'Creating'

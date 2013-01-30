@@ -2,7 +2,7 @@
 #= require jquery_ujs
 #= require jquery.remotipart
 #= require twitter/bootstrap
-#= require handlbars
+#= require handlebars
 #= require ember
 #= require ember-data
 #= require_tree ./lib

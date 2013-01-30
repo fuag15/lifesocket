@@ -7,8 +7,6 @@
     %th
       name
     %th
-      text
-    %th
       version
     %th
       detail
@@ -25,8 +23,6 @@
       %td
         = hb 'linkTo project.show project' do
           = hb 'project.name'
-      %td
-        = hb 'project.text'
       %td
         = hb 'project.version'
       %td
