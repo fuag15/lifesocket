@@ -33,6 +33,14 @@
         = hb 'project.rank'
       %td
         = hb 'imageSrc project.thumb'
+      = hb 'each projectPicture in project.projectPictures' do
+        %td
+          = hb 'linkTo projectPicture.show projectPicture' do
+            = hb 'projectPicture.picture.thumb.url'
+      = hb 'each projectPackage in project.projectPackages' do
+        %td
+          = hb 'linkTo projectPackage.show projectPackage' do
+            = hb 'projectPackage.packagedVersion.url'
 = hb 'linkTo projects.new' do
   .btn.btn-primary
     Create

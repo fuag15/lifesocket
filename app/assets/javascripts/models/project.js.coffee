@@ -5,7 +5,7 @@ Lifesocket.Project = DS.Model.extend
   team: DS.attr 'string'
   rank: DS.attr 'number'
   picture: DS.attr 'picture'
-  projectCategory: DS.belongsTo 'Livesocket.ProjectCategory'
+  projectCategory: DS.belongsTo 'Lifesocket.ProjectCategory'
   projectPictures: DS.hasMany 'Lifesocket.ProjectPicture'
   projectPackages: DS.hasMany 'Lifesocket.ProjectPackage'
 

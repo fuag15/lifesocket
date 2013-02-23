@@ -2,9 +2,18 @@
   = hb 'title'
 %br
   = hb 'full'
+%br
+  = hb 'each postPicture in postPictures' do
+    %br
+      = hb 'postPicture.picture.thumb.url'
+      = hb 'linkTo postPicture.show postPicture' do
+        = hb 'imageSrc postPicture.picture.thumb.url'
 = hb 'linkTo posts.index' do
   .btn
     Back
 = hb 'linkTo post.edit' do
   .btn.btn-primary
     Edit
+= hb 'linkTo postPictures.new' do
+  .btn
+    Add a Picture

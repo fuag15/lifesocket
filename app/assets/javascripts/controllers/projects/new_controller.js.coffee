@@ -1,9 +1,7 @@
 Lifesocket.ProjectsNewController = Ember.ObjectController.extend
   create: ->
-    project_category = @get('controllers.projectCategory.content')
+    project_category = @get 'controllers.projectCategory.content'
     project_category.get('projects').pushObject @content
-    debugger
-    # at this point project_categ
     @store.commit()
     @content.addObserver 'id', @, 'afterCreate'
 

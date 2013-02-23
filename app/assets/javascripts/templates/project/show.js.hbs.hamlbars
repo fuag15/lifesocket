@@ -9,10 +9,28 @@
 %br
   = hb 'rank'
 %br
-  = hb 'imageSrc thumb'
+  = hb 'imageSrc picture.thumb.url'
+= hb 'each projectPicture in projectPictures' do
+  %br
+    = hb 'imageSrc projectPicture.picture.thumb.url'
+    = hb 'linkTo projectPicture.show projectPicture' do
+      .btn
+        Edit
+= hb 'each projectPackage in projectPackages' do
+  %br
+    = hb 'projectPackage.packagedVersion.url'
+    = hb 'linkTo projectPackage.show projectPackage' do
+      .btn
+        Edit
 = hb 'linkTo projects.index' do
   .btn
     Back
 = hb 'linkTo project.edit' do
   .btn.btn-primary
     Edit
+= hb 'linkTo projectPictures.new' do
+  .btn
+    Add a Picture
+= hb 'linkTo projectPackages.new' do
+  .btn
+    Add a Package

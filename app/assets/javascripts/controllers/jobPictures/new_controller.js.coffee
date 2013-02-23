@@ -1,5 +1,7 @@
 Lifesocket.JobPicturesNewController = Ember.ObjectController.extend
   create: ->
+    job = @get 'controllers.job.content'
+    job.get('jobPictures').pushObject @content
     @store.commit()
     @content.addObserver 'id', @, 'afterCreate'
 
@@ -10,6 +12,8 @@ Lifesocket.JobPicturesNewController = Ember.ObjectController.extend
   cancel: ->
     @content.deleteRecord()
     @transitionToRoute 'jobPictures.index'
+
+  needs: ['job']
 
   buttonTitle: 'Create'
   headerTitle: 'Creating'

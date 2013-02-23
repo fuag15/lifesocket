@@ -1,5 +1,5 @@
 %h1
-  Posts
+  Job Categories
 %table.table.table-striped
   %tr
     %th

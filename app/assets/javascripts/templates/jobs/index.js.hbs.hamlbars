@@ -28,7 +28,7 @@
       %td
         = hb 'job.rank'
       %td
-        = hb 'job.thumb'
+        = hb 'job.picture.thumb.url'
 = hb 'linkTo jobs.new' do
   .btn.btn-primary
     Create

@@ -9,18 +9,19 @@
 %br
   = hb 'rank'
 %br
-  = hb 'imageSrc pic'
-%br
-  = hb 'imageSrc thumb'
-%br
-  = hb 'imageSrc mini'
-%br
-  = hb 'imageSrc medium'
-%br
-  = hb 'imageSrc large'
+  = hb 'imageSrc picture.thumb.url'
+= hb 'each jobPicture in jobPictures' do
+  %br
+    = hb 'jobPicture.picture.thumb.url'
+    = hb 'linkTo jobPicture.edit jobPicture' do
+      .btn
+        Edit
 = hb 'linkTo jobs.index' do
   .btn
     Back
 = hb 'linkTo job.edit' do
   .btn.btn-primary
     Edit
+= hb 'linkTo jobPictures.new' do
+  .btn
+    Add a Picture

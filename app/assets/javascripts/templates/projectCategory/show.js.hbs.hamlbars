@@ -1,8 +1,10 @@
 %br
   = hb 'name'
   = hb 'each project in projects' do
-    = hb 'project'
-    = 'linkTo project.show project'
+    = hb 'project.name'
+    = hb 'linkTo project.show project' do
+      .btn
+        Edit
 = hb 'linkTo projectCategories.index' do
   .btn
     Back

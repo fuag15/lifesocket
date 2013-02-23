@@ -1,5 +1,7 @@
 Lifesocket.PostPicturessNewController = Ember.ObjectController.extend
   create: ->
+    post = @get 'controllers.post.content'
+    post.get('postPictures').pushObject @content
     @store.commit()
     @content.addObserver 'id', @, 'afterCreate'
 
@@ -10,6 +12,8 @@ Lifesocket.PostPicturessNewController = Ember.ObjectController.extend
   cancel: ->
     @content.deleteRecord()
     @transitionToRoute 'postPictures.index'
+
+  needs: ['post']
 
   buttonTitle: 'Create'
   headerTitle: 'Creating'

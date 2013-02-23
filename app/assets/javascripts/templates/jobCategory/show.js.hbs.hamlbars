@@ -1,8 +1,17 @@
 %br
   = hb 'name'
-= hb 'linkTo posts.index' do
+= hb 'each job in jobs' dd
+  %br
+    = hb 'job.name'
+    = hb 'linkTo job.show job' do
+      .btn
+        Edit
+= hb 'linkTo jobCategories.index' do
   .btn
     Back
-= hb 'linkTo post.edit' do
+= hb 'linkTo jobCategory.edit' do
   .btn.btn-primary
     Edit
+= hb 'linkTo jobs.new' do
+  .btn
+    Add a Job

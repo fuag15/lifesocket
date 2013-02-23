@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  attr_accessible :blurb, :detail, :name, :rank, :team, :version, :post
+  attr_accessible :blurb, :detail, :name, :rank, :team, :version, :post, :project_category_id
   mount_uploader :picture, PictureUploader
   belongs_to :project_category
   has_many :pictures_projects

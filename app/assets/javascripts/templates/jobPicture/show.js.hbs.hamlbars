@@ -1,7 +1,5 @@
 %br
-  = hb 'title'
-%br
-  = hb 'full'
+  = hb 'picture.thumb.url'
 = hb 'linkTo jobPictures.index' do
   .btn
     Back
